@@ -68,19 +68,25 @@ const Home = () => {
             <div className="container contenedorBarra"></div>
             <div className="container text-center">
                 <div className="traffic-light">
-                    <div onClick={() => setColor("red")} className={"light red" + ((Color === "red") ? " glow" : "")}></div>
-                    <div onClick={() => setColor("yellow")} className={"light yellow mt-3" + ((Color === "yellow") ? " glow" : "")}></div>
-                    <div onClick={() => setColor("green")} className={"light green mt-3" + ((Color === "green") ? " glow" : "")}></div>
-                    {ActivePurple && <div className={"light purple mt-3" + ((Color === "purple") ? " glow" : "")}></div>}
+                    <div onClick={() => 
+						setColor("red")} 
+						className={"light red" + ((Color === "red") ? " glow" : "")}>
+					</div>
+                    <div onClick={() =>
+						setColor("yellow")} 
+						className={"light yellow mt-3" + ((Color === "yellow") ? " glow" : "")}>
+					</div>
+                    <div onClick={() => 
+						setColor("green")} 
+						className={"light green mt-3" + ((Color === "green") ? " glow" : "")}>
+					</div>
+                    	{ActivePurple && <div 
+						className={"light purple mt-3" + ((Color === "purple") ? " glow" : "")}>
+					</div>}
                 </div>
-                <div>
-                    <div className="contenedorBotones mt-4">
-                        <div className="contenedorBotonCambiarColor">
-                            <button onClick={ManualColor} className="btn btn-info">Cambiar de color</button>
-                        </div>
-                        <div className="contenedorBotonPurpura mt-3"></div>
-                        <button onClick={botonPurple} className="btn btn-info">{ActivePurple ? "Quitar Color Purpura" : "Añadir Color Purpura"}</button>
-                    </div>
+                <div className="container mt-4">
+                    <button onClick={ManualColor} className="btn btn-warning mx-2">Cambiar de color</button>
+                    <button onClick={botonPurple} className="btn btn-danger mx-2">{ActivePurple ? "Quitar Color Purpura" : "Añadir Color Purpura"}</button>
                 </div>
             </div>
         </div>
