@@ -1,54 +1,90 @@
 import React, { useEffect, useState } from "react";
 import Styles from "/workspaces/TrafficRonalse/src/styles/index.css";
-import Traffic from "./Traffic";
+
 //include images into your bundle
 import rigoImage from "../../img/rigo-baby.jpg";
 
 
 //create your first component
 const Home = () => {
-			
-	const [RedGlow, setRedGlow] = useState(true);
-	const [YellowGlow, setYellowGlow] = useState(false);
-	const [GreenGlow, setGreenGlow] = useState(false);
+    const [Color, setColor] = useState("red");
+    const [ActivePurple, setActivePurple] = useState(false);
 
-	const handleClick = (color)=> {
-		setRedGlow(color === "red");
-    	setYellowGlow(color === "yellow");
-    	setGreenGlow(color === "green");                     
-	}
+    const AutomaticColor = () => {
+        if (!ActivePurple) {
+            if (Color === "red") {
+                setColor("yellow");
+            } else if (Color === "yellow") {
+                setColor("green");
+            } else if (Color === "green") {
+                setColor("red");
+            }
+        } else {
+            if (Color === "red") {
+                setColor("yellow");
+            } else if (Color === "yellow") {
+                setColor("green");
+            } else if (Color === "green") {
+                setColor("purple");
+            } else if (Color === "purple") {
+                setColor("red");
+            }
+        }
+    };
 
-	const ChangeAuto = () =>{
-		if (RedGlow){
-			handleClick("yellow")
-		}else if (YellowGlow){
-			handleClick("green")
-		}else if (GreenGlow){
-			handleClick("red" )
-		}
-	}
-	useEffect ( ()=> {
-		const interval = setTimeout(ChangeAuto, 1000);
+    useEffect(() => {
+        const interval = setInterval(AutomaticColor, 1000);
+        return () => clearInterval(interval);
+    }, [Color, ActivePurple]);
 
-		return ()=> clearInterval(interval);
+    const botonPurple = () => {
+        setActivePurple(!ActivePurple);
+    };
 
-	},[RedGlow, YellowGlow, GreenGlow] )
+    const ManualColor = () => {
+        if (!ActivePurple) {
+            if (Color === "red") {
+                setColor("yellow");
+            } else if (Color === "yellow") {
+                setColor("green");
+            } else if (Color === "green") {
+                setColor("red");
+            }
+        } else {
+            if (Color === "red") {
+                setColor("yellow");
+            } else if (Color === "yellow") {
+                setColor("green");
+            } else if (Color === "green") {
+                setColor("purple");
+            } else if (Color === "purple") {
+                setColor("red");
+            }
+        }
+    };
 
-
-
-		
-	return (
-<>
-		<div className="container bg-dark" style={{width : 80, height : 100}}></div>
-			<div className="container bg-dark  ps-5" style={{width : 195, height : 320,}}>
-				<Traffic handleClick={handleClick} color= "red" glow= {RedGlow} />
-				<Traffic handleClick={handleClick} color="yellow" glow= {YellowGlow} />
-				<Traffic handleClick={handleClick} color="green" glow={GreenGlow} />
-		</div>
-
-
-</>
-)
+    return (
+        <div>
+            <div className="container contenedorBarra"></div>
+            <div className="container text-center">
+                <div className="traffic-light">
+                    <div onClick={() => setColor("red")} className={"light red" + ((Color === "red") ? " glow" : "")}></div>
+                    <div onClick={() => setColor("yellow")} className={"light yellow mt-3" + ((Color === "yellow") ? " glow" : "")}></div>
+                    <div onClick={() => setColor("green")} className={"light green mt-3" + ((Color === "green") ? " glow" : "")}></div>
+                    {ActivePurple && <div className={"light purple mt-3" + ((Color === "purple") ? " glow" : "")}></div>}
+                </div>
+                <div>
+                    <div className="contenedorBotones mt-4">
+                        <div className="contenedorBotonCambiarColor">
+                            <button onClick={ManualColor} className="btn btn-info">Cambiar de color</button>
+                        </div>
+                        <div className="contenedorBotonPurpura mt-3"></div>
+                        <button onClick={botonPurple} className="btn btn-info">{ActivePurple ? "Quitar Color Purpura" : "Añadir Color Purpura"}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 };
 
 export default Home;

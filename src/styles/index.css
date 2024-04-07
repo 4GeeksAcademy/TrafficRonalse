@@ -12,34 +12,34 @@
 */
 
 
+
+
+
+.traffic-light {
+    background-color: black;
+    display: inline-block;
+    padding: 20px;
+    border-radius: 15px;
+}
+
 .light {
-    width : 100px;
+    width: 100px;
     height: 100px;
     border-radius: 50%;
-    background-color: rgb(136, 2, 136);
 }
+.red {background-color: red;}
+.yellow {background-color: yellow;}
+.green {background-color: green;}
+.purple {background-color: purple;}
 
-/*.Red{ 
-    background: red;
-}
-.Yellow { 
-    background: yellow;
-    margin-top: 5px;
-}
-.Green {
-    background: green;
-    margin-top: 5px;
-}
-*/
 .glow {
-    box-shadow: 10px 10px 50px 50px rgb(232, 232, 155);
+    box-shadow: 0px 10px 30px 30px rgb(238, 227, 82);
 }
 
-#Extra{
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
+.contenedorBarra {
+    background: black;
+    justify-content : center;
+    height: 150px;
+    width: 20px;
+    margin: 0px auto 0;
 }
